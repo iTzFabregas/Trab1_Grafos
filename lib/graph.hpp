@@ -7,14 +7,14 @@
 
 using namespace std;
 
-class Graph
-{
+class Graph {
+
 private:
     int num_vert;
     map<int, list<int>> graph_map;
 
 public:
-    Graph(/* args */);
+    Graph(int v);
 
     ~Graph();
 
