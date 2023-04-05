@@ -31,6 +31,8 @@ public:
 
     void add_edge(int v1, int v2);
 
+    void sort(int v1, int v2);
+
     void print();
 
     void startEulerianCircuit();

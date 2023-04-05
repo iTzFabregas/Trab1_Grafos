@@ -26,6 +26,7 @@ int main(void) {
     for (int i = 0; i < edges; i++) {
         file >> v1 >> v2;
         graph.add_edge(v1, v2);
+        graph.sort(v1, v2);
     }
 
     // graph.print();

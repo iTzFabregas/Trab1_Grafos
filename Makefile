@@ -13,4 +13,4 @@ run:
 	@./prog $${SIZE} $${QTT};
 
 clean:
-	@rm -f *.o prog
+	@rm -f *.o prog *.zip
