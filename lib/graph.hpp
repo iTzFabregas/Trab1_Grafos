@@ -13,7 +13,7 @@ using namespace std;
 class Graph {
 
 private:
-    int num_vert, num_edges;
+    int num_vert;
     map<int, list<int>> graph_map;
 
     void remove_edge(int v1, int v2);
@@ -22,10 +22,12 @@ private:
 
     int DFSCnt(int vertex, vector<bool>& visited);
 
-    void findEulerianCircuit(int vertex, list<int>& circuit);
+    void findEulerianCircuit(int vertex, vector<int>& circuit);
 
 public:
     Graph(int v);
+
+    //~Graph();
 
     void add_edge(int v1, int v2);
 

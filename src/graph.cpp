@@ -4,27 +4,24 @@ using namespace std;
 
 Graph::Graph(int v) {
     this->num_vert = v;
-    this->num_edges = 0;
+    for (int i = 0; i < v; i++)
+    {
+        graph_map[i] = {};
+    }
     
 }
 
 void Graph::add_edge(int v1, int v2) {
 
-    this->graph_map[v1].push_back(v2);
-    graph_map[v1].sort();
-    this->graph_map[v2].push_back(v1);
-    graph_map[v2].sort();
-
-    this->num_edges++;
+    graph_map[v1].push_back(v2);
+    graph_map[v2].push_back(v1);
 }
 
 void Graph::remove_edge(int v1, int v2) {
-    list<int>::iterator it = find(graph_map[v1].begin(), graph_map[v1].end(), v2);
-    this->graph_map[v1].erase(it);
-    it = find(graph_map[v2].begin(), graph_map[v2].end(), v1);
-    this->graph_map[v2].erase(it);
-
-    this->num_edges--;
+    list<int>::iterator iv1 = find(graph_map[v1].begin(), graph_map[v1].end(), v2);
+    *iv1 = -1;
+    list<int>::iterator iv2 = find(graph_map[v2].begin(), graph_map[v2].end(), v1);
+    *iv2 = -1;
 }
 
 void Graph::print() {
@@ -36,15 +33,12 @@ void Graph::print() {
         {
             cout << x << " ";
         }
-        cout << endl;
-        
+        cout << endl;   
     }
-    
 }
 
-
 void Graph::startEulerianCircuit() {
-    list<int> circuit;
+    vector<int> circuit;
     findEulerianCircuit(0, circuit);
 
     for (int v : circuit) {
@@ -59,11 +53,7 @@ int Graph::DFSCnt(int vertex, vector<bool>& visited) {
 
     for (int prox_v : graph_map[vertex]){
 
-        //if (graph_map[prox_v].size() == 1) {
-        //    continue;
-        //}
-
-        if (!visited[prox_v]) {
+        if (prox_v != -1 && !visited[prox_v]) {
             cnt += DFSCnt(prox_v, visited);
         }
     }
@@ -71,7 +61,13 @@ int Graph::DFSCnt(int vertex, vector<bool>& visited) {
 }
 
 bool Graph::isValidEdge(int v1, int v2) {
-    if (graph_map[v1].size() == 1) {
+    int cnt = 0;
+    for (int i : graph_map[v1]) {
+        if (i != -1 ) {
+            cnt++;
+        }
+    }
+    if (cnt == 1) {
         return true;
     }
 
@@ -85,11 +81,12 @@ bool Graph::isValidEdge(int v1, int v2) {
     return (cnt1 <= cnt2);
 }
 
-void Graph::findEulerianCircuit(int vertex, list<int>& circuit) {
+void Graph::findEulerianCircuit(int vertex, vector<int>& circuit) {
 
     for (int prox_v : graph_map[vertex]) {
-            cout << vertex << " " << prox_v << endl;
-        if (isValidEdge(vertex, prox_v)) {
+        cout << vertex << " " << prox_v << endl;
+        if (prox_v != -1 && isValidEdge(vertex, prox_v)) {
+            cout << vertex << "-" << prox_v << "  ";
             remove_edge(vertex, prox_v);
             findEulerianCircuit(prox_v, circuit);
         }
