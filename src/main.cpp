@@ -15,23 +15,25 @@ int main(void) {
     ifstream file;
     file.open(filename, ios::in);
 
-    int v, a;
-    file >> v >> a;
-    cout << v << a;
+    int vertices, edges;
+    file >> vertices >> edges;
 
     // INICIALIZA O GRAFO
-    Graph graph(v);
+    Graph graph(vertices);
 
     // LE TODAS AS ARESTAS
     int v1, v2;
-    for (size_t i = 0; i < v; i++) {
+    for (int i = 0; i < edges; i++) {
         file >> v1 >> v2;
         graph.add_edge(v1, v2);
     }
-    
-    // ALGORITMO PARA ENCONTRAR O CIRCUITO EULERIANO
 
+    // graph.print();
+
+    // FECHA O ARQUIVO DE ENTRADA
     file.close();
 
+    // ALGORITMO PARA ENCONTRAR O CIRCUITO EULERIANO
+    graph.startEulerianCircuit();
 
 }   
