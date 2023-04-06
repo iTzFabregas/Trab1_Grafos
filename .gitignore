@@ -33,5 +33,5 @@
 prog
 
 # Extras
-.vscode
+.vscode/*
 *.zip
