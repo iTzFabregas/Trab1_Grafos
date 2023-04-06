@@ -26,7 +26,6 @@ int main(void) {
         graph.add_edge(v1, v2);
     }
     graph.sort();
-    // graph.print();
 
     // FECHA O ARQUIVO DE ENTRADA
     file.close();

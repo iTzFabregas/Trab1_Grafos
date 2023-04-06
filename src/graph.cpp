@@ -4,10 +4,6 @@ using namespace std;
 
 Graph::Graph(int v) {
     this->num_vert = v;
-    for (int i = 0; i < v; i++)
-    {
-        graph_map[i] = {};
-    }
 }
 
 void Graph::add_edge(int v1, int v2) {
@@ -26,17 +22,7 @@ void Graph::remove_edge(int v1, int v2) {
     *iv1 = -1;
     list<int>::iterator iv2 = find(graph_map[v2].begin(), graph_map[v2].end(), v1);
     *iv2 = -1;
-}
-
-void Graph::print() {
-    for (auto it = graph_map.begin(); it != graph_map.end(); it++) {   
-        cout << ">> " << it->first << endl;
-        for (auto x : it->second){
-            cout << x << " ";
-        }
-        cout << endl;   
-    }
-}
+}   
 
 void Graph::startEulerianCircuit(vector<int>& circuit) {
     findEulerianCircuit(0, circuit);
@@ -62,7 +48,6 @@ void Graph::DFS(int vertex1, vector<bool>& visited, vector<int>& degree) {
             DFS(vertex2, visited, degree);
         }
     }
-
 }
 
 bool Graph::isEulerian() {
@@ -76,13 +61,15 @@ bool Graph::isEulerian() {
         }
     }
 
+    // VERIFICA SE TEM ALGUM VERTICE COM GRAU IMPAR
     for (int d : degree) {
         if (d % 2 != 0) {
             return false;
         }
     }
 
-    fill(visited.begin(), visited.end(), false);
+    // VERIFICA SE O GRAFO É CONEXO
+    visited.assign(num_vert, false);
     stack<int> stk;
     stk.push(0);
     visited[0] = true;
