@@ -79,17 +79,17 @@ bool Graph::isEulerian() {
     stack<int> stk;
     stk.push(0);
     visited[0] = true;
-    int count = 1;
+    int cnt = 1;
     while (!stk.empty()) {
-        int v = stk.top();
+        int vertex1 = stk.top();
         stk.pop();
-        for (int u : graph_map[v]) {
-            if (!visited[u]) {
-                stk.push(u);
-                visited[u] = true;
-                count++;
+        for (int vertex2 : graph_map[vertex1]) {
+            if (!visited[vertex2]) {
+                stk.push(vertex2);
+                visited[vertex2] = true;
+                cnt++;
             }
         }
     }
-    return count == num_vert;
+    return cnt == num_vert;
 }
