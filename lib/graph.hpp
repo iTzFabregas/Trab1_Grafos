@@ -43,7 +43,7 @@ private:
 
 public:
     /**
-     * @brief Construct a new Graph object
+     * @brief construtor da classe Graph
      * 
      * @param v numero de vertices
      */
