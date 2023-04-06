@@ -8,18 +8,17 @@ Graph::Graph(int v) {
     {
         graph_map[i] = {};
     }
-    
 }
 
 void Graph::add_edge(int v1, int v2) {
-
     graph_map[v1].push_back(v2);
     graph_map[v2].push_back(v1);
 }
 
-void Graph::sort(int v1, int v2) {
-    graph_map[v1].sort();
-    graph_map[v2].sort();
+void Graph::sort() {
+    for (int i = 0; i < num_vert; i++) {
+        graph_map[i].sort();    
+    }
 }
 
 void Graph::remove_edge(int v1, int v2) {
@@ -30,43 +29,74 @@ void Graph::remove_edge(int v1, int v2) {
 }
 
 void Graph::print() {
-    for (auto it = graph_map.begin(); it != graph_map.end(); it++)
-    {   
-        cout << ">>" << it->first << endl;
-        
-        for (auto x : it->second)
-        {
+    for (auto it = graph_map.begin(); it != graph_map.end(); it++) {   
+        cout << ">> " << it->first << endl;
+        for (auto x : it->second){
             cout << x << " ";
         }
         cout << endl;   
     }
 }
 
-void Graph::startEulerianCircuit() {
-    vector<int> circuit;
-    circuit.push_back(0);
+void Graph::startEulerianCircuit(vector<int>& circuit) {
     findEulerianCircuit(0, circuit);
-
-    if (circuit.back() == 0) {
-        cout << "Sim" << endl;
-        for (int v : circuit) {
-            cout << v << " ";
-        }
-        cout << endl;
-    } else {
-        cout << "Não";
-    }
+    reverse(circuit.begin(), circuit.end());
 }
 
 void Graph::findEulerianCircuit(int vertex, vector<int>& circuit) {
 
     for (int prox_v : graph_map[vertex]) {
         if (prox_v != -1) {
-            circuit.push_back(prox_v);
             remove_edge(vertex, prox_v);
             findEulerianCircuit(prox_v, circuit);
         }
-
     }
-    
+    circuit.push_back(vertex);
+}
+
+void Graph::DFS(int vertex1, vector<bool>& visited, vector<int>& degree) {
+    visited[vertex1] = true;
+    for (int vertex2 : graph_map[vertex1]) {
+        degree[vertex1]++;
+        if (!visited[vertex2]) {
+            DFS(vertex2, visited, degree);
+        }
+    }
+
+}
+
+bool Graph::isEulerian() {
+    vector<bool> visited(num_vert, false);
+    vector<int> degree(num_vert, 0);
+
+    // ENCONTRA O GRAU DE CADA VERTICE
+    for (int vertex = 0; vertex < num_vert; vertex++) {
+        if (!visited[vertex]) {
+            DFS(vertex, visited, degree);
+        }
+    }
+
+    for (int d : degree) {
+        if (d % 2 != 0) {
+            return false;
+        }
+    }
+
+    fill(visited.begin(), visited.end(), false);
+    stack<int> stk;
+    stk.push(0);
+    visited[0] = true;
+    int count = 1;
+    while (!stk.empty()) {
+        int v = stk.top();
+        stk.pop();
+        for (int u : graph_map[v]) {
+            if (!visited[u]) {
+                stk.push(u);
+                visited[u] = true;
+                count++;
+            }
+        }
+    }
+    return count == num_vert;
 }
