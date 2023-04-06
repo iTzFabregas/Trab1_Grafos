@@ -67,9 +67,8 @@ public:
      * @brief função que é chamada na main para começar a recursão de achar
      * o circuito euleriano
      * 
-     * @param circuit vetor com os vértices do circuito
      */
-    void startEulerianCircuit(vector<int>& circuit);
+    void startEulerianCircuit();
 
     /**
      * @brief função que verifica se o grafo possui um circuito euleriano ou não

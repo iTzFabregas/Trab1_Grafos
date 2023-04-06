@@ -24,9 +24,15 @@ void Graph::remove_edge(int v1, int v2) {
     *iv2 = -1;
 }   
 
-void Graph::startEulerianCircuit(vector<int>& circuit) {
+void Graph::startEulerianCircuit() {
+    vector<int> circuit;
     findEulerianCircuit(0, circuit);
     reverse(circuit.begin(), circuit.end());
+
+    for (int v : circuit) {
+        cout << v << " ";
+    }
+    cout << endl;
 }
 
 void Graph::findEulerianCircuit(int vertex, vector<int>& circuit) {

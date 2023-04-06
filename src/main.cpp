@@ -34,15 +34,9 @@ int main(void) {
     // SE TIVER, ALGORITMO PARA ACHÁ-LO
     if (graph.isEulerian()){
         cout << "Sim" << endl;
-
-        vector<int> circuit;
-        graph.startEulerianCircuit(circuit);
-
-        for (int v : circuit) {
-            cout << v << " ";
-        }
+        graph.startEulerianCircuit();
+        
     } else {
-        cout << "Não";
+        cout << "Não" << endl;
     }
-    cout << endl;
 }   
