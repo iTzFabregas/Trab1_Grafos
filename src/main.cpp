@@ -6,7 +6,7 @@ using namespace std;
 int main(void) {
 
     // LE O NOME DO ARQUIVO DE ENTRADA
-    char filename[16];
+    char filename[32];
     cin >> filename;
 
     // ABRE O ARQUIVO DE ENTRADA
