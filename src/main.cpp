@@ -30,8 +30,8 @@ int main(void) {
     // FECHA O ARQUIVO DE ENTRADA
     file.close();
 
-    // ALGORITMO PARA VER SE TEM UM CIRCUITO EULERIANO
-    // SE TIVER, ALGORITMO PARA ACHÁ-LO
+    // ALGORITMO PARA VER SE O GRAFO É EULERIANO
+    // SE TIVER, ALGORITMO PARA ACHAR O CIRCUITO EULERIANO
     if (graph.isEulerian()){
         cout << "Sim" << endl;
         graph.EulerianCircuit();

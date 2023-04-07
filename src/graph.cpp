@@ -46,7 +46,7 @@ void Graph::EulerianCircuitRec(int vertex, vector<int>& circuit) {
     circuit.push_back(vertex);
 }
 
-void Graph::DFS(int vertex1, vector<bool>& visited, vector<int>& degree) {
+void Graph::DFS(int vertex1, vector<bool>& visited,     vector<int>& degree) {
     visited[vertex1] = true;
     for (int vertex2 : graph_map[vertex1]) {
         degree[vertex1]++;

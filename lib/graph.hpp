@@ -17,7 +17,7 @@ private:
     map<int, list<int>> graph_map;
 
     /**
-     * @brief função para remove uma aresta do grafo
+     * @brief função para remover uma aresta do grafo
      * 
      * @param v1 um extremo da aresta
      * @param v2 o outro extremo da aresta
@@ -33,9 +33,9 @@ private:
     void EulerianCircuitRec(int vertex, vector<int>& circuit);
 
     /**
-     * @brief algoritmo que percorre o grafo inteiro e calcula o grau de cada vertice
+     * @brief algoritmo recursivo que percorre o grafo inteiro e calcula o grau de cada vertice
      * 
-     * @param v vertice inicial da contagem
+     * @param v vertice atual da contagem
      * @param visited vertices que ja foram visitados
      * @param degree grau de cada vértice
      */
