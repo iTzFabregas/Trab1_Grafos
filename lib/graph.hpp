@@ -30,7 +30,7 @@ private:
      * @param vertex vertice que a recursão está no momento
      * @param circuit vetor com os vértices do circuito
      */
-    void findEulerianCircuit(int vertex, vector<int>& circuit);
+    void EulerianCircuitRec(int vertex, vector<int>& circuit);
 
     /**
      * @brief algoritmo que percorre o grafo inteiro e calcula o grau de cada vertice
@@ -68,7 +68,7 @@ public:
      * o circuito euleriano
      * 
      */
-    void startEulerianCircuit();
+    void EulerianCircuit();
 
     /**
      * @brief função que verifica se o grafo possui um circuito euleriano ou não

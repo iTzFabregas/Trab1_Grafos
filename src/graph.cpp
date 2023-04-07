@@ -24,9 +24,9 @@ void Graph::remove_edge(int v1, int v2) {
     *iv2 = -1;
 }   
 
-void Graph::startEulerianCircuit() {
+void Graph::EulerianCircuit() {
     vector<int> circuit;
-    findEulerianCircuit(0, circuit);
+    EulerianCircuitRec(0, circuit);
     reverse(circuit.begin(), circuit.end());
 
     for (int v : circuit) {
@@ -35,12 +35,12 @@ void Graph::startEulerianCircuit() {
     cout << endl;
 }
 
-void Graph::findEulerianCircuit(int vertex, vector<int>& circuit) {
+void Graph::EulerianCircuitRec(int vertex, vector<int>& circuit) {
 
     for (int prox_v : graph_map[vertex]) {
         if (prox_v != -1) {
             remove_edge(vertex, prox_v);
-            findEulerianCircuit(prox_v, circuit);
+            EulerianCircuitRec(prox_v, circuit);
         }
     }
     circuit.push_back(vertex);
@@ -75,21 +75,11 @@ bool Graph::isEulerian() {
     }
 
     // VERIFICA SE O GRAFO É CONEXO
-    visited.assign(num_vert, false);
-    stack<int> stk;
-    stk.push(0);
-    visited[0] = true;
-    int cnt = 1;
-    while (!stk.empty()) {
-        int vertex1 = stk.top();
-        stk.pop();
-        for (int vertex2 : graph_map[vertex1]) {
-            if (!visited[vertex2]) {
-                stk.push(vertex2);
-                visited[vertex2] = true;
-                cnt++;
-            }
+    for (bool v : visited) {
+        if (!v) {
+            return false;
         }
     }
-    return cnt == num_vert;
+
+    return true;
 }
