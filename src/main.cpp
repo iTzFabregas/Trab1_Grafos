@@ -34,7 +34,7 @@ int main(void) {
     // SE TIVER, ALGORITMO PARA ACHÁ-LO
     if (graph.isEulerian()){
         cout << "Sim" << endl;
-        graph.startEulerianCircuit();
+        graph.EulerianCircuit();
         
     } else {
         cout << "Não" << endl;
