@@ -25,6 +25,12 @@ private:
     void remove_edge(int v1, int v2);
 
     /**
+     * @brief 
+     * 
+     */
+    bool isBridge(int vertex1, int vertex2);
+
+    /**
      * @brief recursão para achar o circuito euleriano
      * 
      * @param vertex vertice que a recursão está no momento
@@ -32,14 +38,12 @@ private:
      */
     void EulerianCircuitRec(int vertex, vector<int>& circuit);
 
-    /**
-     * @brief algoritmo recursivo que percorre o grafo inteiro e calcula o grau de cada vertice
-     * 
-     * @param v vertice atual da contagem
-     * @param visited vertices que ja foram visitados
-     * @param degree grau de cada vértice
-     */
-    void DFS(int v, vector<bool>& visited, vector<int>& degree);
+
+    int DFSCnt(int vertex,  vector<bool>& visited);
+
+    void mark_edge(int v1, int v2);
+
+    void unmark_edge(int v1, int v2);
 
 public:
     /**
@@ -77,6 +81,8 @@ public:
      * @return false - se não for um grafo euleriano
      */
     bool isEulerian();
+
+    void print();
 };
 
 #endif
