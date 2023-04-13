@@ -25,12 +25,13 @@ private:
     void remove_edge(int v1, int v2);
 
     /**
-     * @brief 
+     * @brief função que verifica se a aresta é a unica da lista de adjacencia
+     * e verifica se a aresta é considerada ponte ou não
      * 
-     * @param vertex1 
-     * @param vertex2 
-     * @return true 
-     * @return false 
+     * @param vertex1 um extremo da aresta
+     * @param vertex2 o outro extremo da aresta
+     * @return true se for a unica aresta / não for uma ponte
+     * @return false se for uma ponte
      */
     bool isValidEdge(int vertex1, int vertex2);
 
