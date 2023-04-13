@@ -27,8 +27,12 @@ private:
     /**
      * @brief 
      * 
+     * @param vertex1 
+     * @param vertex2 
+     * @return true 
+     * @return false 
      */
-    bool isBridge(int vertex1, int vertex2);
+    bool isValidEdge(int vertex1, int vertex2);
 
     /**
      * @brief recursão para achar o circuito euleriano
@@ -38,11 +42,29 @@ private:
      */
     void EulerianCircuitRec(int vertex, vector<int>& circuit);
 
-
+    /**
+     * @brief essa função conta quantos vertices são alcançaveis a partir do vertice de entrada
+     * 
+     * @param vertex vertice de inicio
+     * @param visited vertices ja visitados
+     * @return int quantos vertices forem alcançados
+     */
     int DFSCnt(int vertex,  vector<bool>& visited);
 
+    /**
+     * @brief marca, sem removê-la do grafom uma aresta para não usa-la na função seguinte
+     * 
+     * @param v1 um extremo da aresta
+     * @param v2 o outro extremo da aresta
+     */
     void mark_edge(int v1, int v2);
 
+    /**
+     * @brief desmarca a marcação da função 'mark_edge'
+     * 
+     * @param v1 um extremo da aresta
+     * @param v2 o outro extremo da aresta
+     */
     void unmark_edge(int v1, int v2);
 
 public:
@@ -81,8 +103,6 @@ public:
      * @return false - se não for um grafo euleriano
      */
     bool isEulerian();
-
-    void print();
 };
 
 #endif
